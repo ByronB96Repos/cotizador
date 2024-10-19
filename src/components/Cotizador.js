@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import Swal from 'sweetalert2'
 const url = 'http://localhost:5221/api/Cotizador/Cotizador';
 
 function Cotizador() {
@@ -25,7 +26,11 @@ function Cotizador() {
                 setTasaInteres(response.data.tasaInteres || 0);
 
             } else {
-                console.error("Error en el monto ingresado debe estar entre 200 y 100000");
+                Swal.fire({
+                    icon: "error",
+                    title: "Monto Ingresado Incorrecto",
+                    text: "El monto ingresado debe estar entre 200 y 100000",
+                });
                 setValorRendimento(0);
                 setMontoRecibir(0);
                 setTasaInteres(0);
